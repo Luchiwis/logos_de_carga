@@ -4,6 +4,7 @@
     --bg:#3c3a3c;
     --moveBall: 40%;
     --ballSize: 40%;
+    --time: 2s;
 }
 body{
     margin: 0;
@@ -33,7 +34,7 @@ section{
     grid-template-columns: 1fr 1fr;
     align-items: center;
     justify-items: center;
-    animation: rotation 2s ease-in-out 0s infinite;
+    animation: rotation var(--time) ease-in-out 0s infinite;
 }
 #logo1 > span{
     width: var(--ballSize);
@@ -41,7 +42,7 @@ section{
     border-radius: 100%;
     position: relative;
     background-color: var(--color2);
-    animation: moveBall 1s cubic-bezier(0.85,-0.01, 0.46, 1) 0s infinite alternate;
+    animation: moveBall calc(var(--time) / 2) cubic-bezier(0.85,-0.01, 0.46, 1) 0s infinite alternate;
 
 }
 
@@ -69,7 +70,6 @@ section{
         transform: translate(0, 0);
     }
     to {
-        /* Usa las variables CSS para dirección */
         transform: translate(calc(var(--tx) * var(--moveBall)), calc(var(--ty) * var(--moveBall)));
     }
 }
