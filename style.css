@@ -1,0 +1,83 @@
+:root{
+    --color1: #DDFCAD;
+    --color2: #82846D;
+    --bg:#3c3a3c;
+    --moveBall: 40%;
+    --ballSize: 40%;
+}
+body{
+    margin: 0;
+    background-color: var(--bg);
+    display: flex;
+    min-height: 100dvh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+*{
+    box-sizing: border-box;
+}
+#logo1{
+    width: 50px;
+    aspect-ratio: 1/1;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    animation: rotation 2s ease-in-out 0s infinite;
+}
+#logo1 > span{
+    width: var(--ballSize);
+    height: var(--ballSize);
+    border-radius: 100%;
+    position: relative;
+    background-color: var(--color2);
+    animation: moveBall 1s cubic-bezier(0.85,-0.01, 0.46, 1) 0s infinite alternate;
+
+}
+
+/* Usa una sola animación y cambia la dirección con transform: translate */
+#logo1>#b1{
+    background-color: var(--color1);
+    --tx:  1;
+    --ty:  1;
+}
+#logo1>#b2{
+    --tx: -1;
+    --ty:  1;
+}
+#logo1>#b3{
+    --tx:  1;
+    --ty: -1;
+}
+#logo1>#b4{
+    --tx: -1;
+    --ty: -1;
+}
+
+@keyframes moveBall {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        /* Usa las variables CSS para dirección */
+        transform: translate(calc(var(--tx) * var(--moveBall)), calc(var(--ty) * var(--moveBall)));
+    }
+}
+
+@keyframes rotation{
+    from{
+        transform: rotateZ(0deg);
+    } to {
+        transform: rotateZ(360deg);
+    }
+}
