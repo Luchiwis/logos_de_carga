@@ -1,23 +1,28 @@
-section#windows10{
-    border:1px solid white;
+section#windows10 {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    --start-angle: 235deg;
+    --time: 4s;
 }
 
-section#windows10 > div{
-    border: 1px solid white;
+section#windows10>div {
     position: relative;
-    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    aspect-ratio: 1/1;
 }
 
-section#windows10 > div > div{
+section#windows10>div>div {
     position: absolute;
     height: 10px;
     width: 100%;
-    transform: rotateZ(calc((180/6)*1deg*var(--n)));
-    animation: rotarWin10 2s ease-in-out infinite;
+    animation: rotarWin10 var(--time) ease-in-out infinite;
+    transform: rotate(var(--start-angle));
+    animation-delay: calc(var(--n) * 0.1s);
 }
-section#windows10 > div > div::after{
+
+section#windows10>div>div::after {
     content: "";
     display: inline-block;
     height: 10px;
@@ -28,33 +33,52 @@ section#windows10 > div > div::after{
     right: 50%;
 }
 
-section#windows10 > div > div:nth-child(1){
-    --n:1
-}
-section#windows10 > div > div:nth-child(2){
-    --n:2
-}
-section#windows10 > div > div:nth-child(3){
-    --n:3
-}
-section#windows10 > div > div:nth-child(4){
-    --n:4
-}
-section#windows10 > div > div:nth-child(5){
-    --n:5
-}
-section#windows10 > div > div:nth-child(6){
-    --n:6
+section#windows10>div>div:nth-child(1) {
+    --n: 1
 }
 
-@keyframes rotarWin10{
-    0%{
-        transform: rotateZ(calc((180/6)*1deg*var(--n)));
+section#windows10>div>div:nth-child(2) {
+    --n: 2
+}
+
+section#windows10>div>div:nth-child(3) {
+    --n: 3
+}
+
+section#windows10>div>div:nth-child(4) {
+    --n: 4
+}
+
+section#windows10>div>div:nth-child(5) {
+    --n: 5
+}
+
+section#windows10>div>div:nth-child(6) {
+    --n: 6
+}
+
+@keyframes rotarWin10 {
+    0% {
+        /* transform: rotateZ(calc((180/6)*1deg*var(--n))); */
+        transform: rotate(var(--start-angle));
+        opacity: 0;
     }
-    50%{
-        transform: rotateZ(calc(360deg));
+
+    0.1% {
+        opacity: 1;
     }
-    100%{
-        transform: rotateZ(calc((180/6)*1deg*var(--n)+360deg));
+    
+    75% {
+        opacity: 1;
+    }
+    75.5% {
+        transform: rotateZ(calc(360deg*2 + var(--start-angle)));
+        opacity: 0;
+    }
+
+
+    100% {
+        opacity: 0;
+        transform: rotateZ(calc(360deg*2 + var(--start-angle)));
     }
 }
